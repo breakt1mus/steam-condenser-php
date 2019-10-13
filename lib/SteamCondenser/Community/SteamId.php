@@ -128,10 +128,12 @@ class SteamId extends XMLData {
         }
         if (preg_match('/^STEAM_[0-1]:[0-1]:[0-9]+$/', $steamId)) {
             $steamId = explode(':', substr($steamId, 8));
-            return bcadd($steamId[0] + $steamId[1] * 2, 76561197960265728);
+            $steamId = $steamId[0] + $steamId[1] * 2 + 1197960265728;
+            return '7656' . $steamId;
         } elseif (preg_match('/^\[U:[0-1]:[0-9]+\]$/', $steamId)) {
             $steamId = explode(':', substr($steamId, 3, strlen($steamId) - 1));
-            return bcadd($steamId[0] + $steamId[1], 76561197960265727);
+            $steamId = $steamId[0] + $steamId[1] + 1197960265727;
+            return '7656' . $steamId;
         } else {
             throw new SteamCondenserException("SteamID \"$steamId\" doesn't have the correct format.");
         }
